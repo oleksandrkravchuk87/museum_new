@@ -20,5 +20,6 @@ public interface ExhibitService {
     void  edit (int id, String description, String timePeriod, String material, String origin, MultipartFile multipartFile);
     List<ExhibitDTO> findAll();
     public void addImage(int id, MultipartFile multipartFile);
+    List<ExhibitDTO> findByDesc(String description);
 }
 

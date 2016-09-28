@@ -9,7 +9,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="p" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="seс" uri="http://www.springframework.org/security/tags" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 
 
 <p:forEach items="${users}" var="u">

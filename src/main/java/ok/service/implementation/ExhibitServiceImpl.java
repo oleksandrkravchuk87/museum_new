@@ -89,4 +89,23 @@ List<ExhibitDTO> exhibitDTOList = new ArrayList<ExhibitDTO>();
 //     public List<Exhibit> findAll() {
 //        return exhibitRepo.findAll();
 //    }
+
+    public List<ExhibitDTO> findByDesc(String description){
+    List<ExhibitDTO> exhibitDTOList = new ArrayList<ExhibitDTO>();
+    List<Exhibit> exhibitList = exhibitRepo.findByDesc(description);
+    for (Exhibit exhibit: exhibitList) {
+        ExhibitDTO exhibitDTO = new ExhibitDTO();
+        exhibitDTO.setId(exhibit.getId());
+        exhibitDTO.setDescription(exhibit.getDescription());
+        exhibitDTO.setTimePeriod(exhibit.getTimePeriod());
+        exhibitDTO.setMaterial(exhibit.getMaterial());
+        exhibitDTO.setOrigin(exhibit.getOrigin());
+        String miniatire = Base64.getEncoder().encodeToString(exhibit.getMiniature());
+        exhibitDTO.setMiniature(miniatire);
+        exhibitDTOList.add(exhibitDTO);
+    }
+    return exhibitDTOList;
+}
+
+
 }

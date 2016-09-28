@@ -40,12 +40,13 @@ public class ExhibitController {
         return "redirect:/exhibit/all";
     }
 
-    @RequestMapping(value = "/exhibit/page/{id}", method = RequestMethod.GET)
-    public String exhibitPage(@PathVariable String id, Model model) {
-        Exhibit exhibit = exhibitService.findOne(Integer.parseInt(id));
-        model.addAttribute("exhibit", exhibit);
+    @RequestMapping(value = "/exhibit/page", method = RequestMethod.POST)
+    public String exhibitPage(@RequestParam("serch") String description, Model model) {
+        List<ExhibitDTO> exhibitList = exhibitService.findByDesc(description);
+        model.addAttribute("exhibitList", exhibitList);
         return "views-exhibit-page";
     }
+
 
     @RequestMapping(value = "/exhibit/edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable String id, Model model) {

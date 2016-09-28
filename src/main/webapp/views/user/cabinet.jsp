@@ -10,13 +10,15 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <div>
     <p>Привіт, ${user.name}</p>
+    Профіль:
+    <p>${user.name}</p>
     <p>${user.secondname}</p>
     <p>${user.email}</p>
     <p>${user.phone}</p>
     <p>${user.registrationDate.toString()}</p>
     Ви записані на:
-    <%--${user.excursionRecordList.excursionDay}--%>
-    ${user.excursionRecordList}
+
+
     <p:forEach items="${records}" var="e">
         <div>
            <p style="text-align: left" ;>${e.excursionDay}</p>
@@ -31,7 +33,8 @@
                 </p>
         </div>
     </p:forEach>
-        <p><a href="/user/add">Видалити усі</a></p>
-
+        <p><form:form cssStyle="text-align: center" action="/excursionRecord/deleteAll">
+            <input type="hidden" name="userId" value="${user.id}">
+            <button type="submit">Видалити усі</button></form:form>
 </div>
 

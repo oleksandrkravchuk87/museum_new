@@ -9,6 +9,10 @@
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <header style = "text-align:  center;
 font-size: 2.2em;
 padding-left: 10% ;
@@ -23,14 +27,43 @@ color: saddlebrown;
 
         <table>
             <tr>
-                <td style="width: 25%"><img src=" "></td>
-                <td style="width: 65%"><h2>header</h2> </td>
+                <td style="width: 35%"><img width="235px" height="120px" src="<c:url value="/resources/images/Unbenannt.png" />" alt=""  /><img src=" "></td>
+                <td style="width: 55%"><div>
+<h1>Львівський історичний музей</h1>
+
+                </div> </td>
                 <td style="width: 10%">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     <sec:authorize access="isAnonymous()"><a href="/loginpage">Уівйти</a> </sec:authorize>
                     <br>
                     <sec:authorize access="isAnonymous()"><a href="/registration">Зареєструватися</a> </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
                         Привіт, <sec:authentication property="name"/>
+
+                        <form:form method="get" action="/cabinet">
+                            <button type="submit">Кабінет</button>
+                        </form:form>
+
                         <form:form method="post" action="/logout">
                             <button type="submit">Logout</button>
                         </form:form>

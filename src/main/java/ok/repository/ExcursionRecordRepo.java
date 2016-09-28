@@ -13,4 +13,8 @@ import java.util.List;
 public interface ExcursionRecordRepo extends JpaRepository<ExcursionRecord, Integer> {
     @Query("SELECT e FROM ExcursionRecord e WHERE e.user.id LIKE :id")
     List<ExcursionRecord> findByUser(@Param("id") int id);
+
+    @Query("DELETE FROM ExcursionRecord e WHERE e.user.id LIKE :id")
+    List<ExcursionRecord> deleteAllByUser(@Param("id") int id);
+
 }

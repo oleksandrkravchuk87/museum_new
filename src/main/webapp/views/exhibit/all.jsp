@@ -13,6 +13,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <p>
+<form action="/exhibit/page?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
+Знайти експонат: <input type="text" name="serch">
+<button type="submit">Знайти</button></form>
 <div>
 <c:forEach items="${exhibits}" var="ex">
     <div style="width: 90%; height: 130px;  background-color: antiquewhite; color: white; float: left; margin: 10px; border: 3px black; border-radius: 5px; position: center;"

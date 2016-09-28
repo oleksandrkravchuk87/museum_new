@@ -9,18 +9,14 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="e" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="seс" uri="http://www.springframework.org/security/tags" %>
-<div style = "text-align:  center;
-font-size: 2.2em;
-padding-left: 10% ;
-padding-right: 10%
-">
 
 
-<p>
+
+<div>
 <e:forEach items="${excursions}" var="e">
     <a href="/excursionRecord/add/${e.id}">
-    <div style="width: 300px; height: 300px; background-color: darkgrey; color: white; float: left; margin: 10px; border: 3px double black; border-radius: 50%;">
-    <p style="text-align: left" ;>${e.excursionTheme}</p>
+    <div style="width: 90%; height: 130px;  background-color: antiquewhite; float: left; margin: 10px; border: 3px black; border-radius: 5px; position: center; padding:  10px">
+    <p style="text-align: left" ;><h4> ${e.excursionTheme} </h4></p>
     <p style="text-align: left" ;>${e.excursionDuration}</p>
     <p style="text-align: left" ;>${e.excursionDay} </p>
     <p style="text-align: left" ;>${e.excursionStart} </p>
@@ -35,5 +31,6 @@ padding-right: 10%
 </e:forEach>
 <seс:authorize access="hasRole('ROLE_ADMIN')">
 <p><a href="/excursion/add">Додати екскурсію</a></p></seс:authorize>
-</p>
+
+
 </div>

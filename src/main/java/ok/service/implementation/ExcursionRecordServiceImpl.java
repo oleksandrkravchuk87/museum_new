@@ -32,6 +32,9 @@ public class ExcursionRecordServiceImpl implements ExcursionRecordService {
     public void delete(int id) {
         excursionRecordRepo.delete(id);
     }
+    public void deleteAll(int id) {
+        excursionRecordRepo.deleteAllByUser(id);
+    }
 
     public ExcursionRecord findOne(int id) {
         return excursionRecordRepo.findOne(id);

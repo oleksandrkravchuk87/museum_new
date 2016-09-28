@@ -7,7 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <footer style = "text-align:  center;
-font-size: 2.2em;
 padding-left: 10% ;
 padding-right: 10%
 ">

@@ -56,6 +56,6 @@ userRepo.delete(id);
             return null;
         }
         Collection<SimpleGrantedAuthority> authorities=new ArrayList<SimpleGrantedAuthority>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+        authorities.add(new SimpleGrantedAuthority(String.valueOf(user.getRole())));
         return new org.springframework.security.core.userdetails.User(String.valueOf(user.getId()),user.getPassword(),authorities);
 }}

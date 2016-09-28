@@ -63,4 +63,11 @@ private ExcursionRecordService excursionRecordService;
         excursionRecordService.delete(Integer.parseInt(id));
         return "redirect:/user/cabinet/"+String.valueOf(userId);
     }
+    @RequestMapping(value = "/excursionRecord/deleteAll", method = RequestMethod.POST)
+    public String delete(@RequestParam("userId")String userId) {
+        excursionRecordService.deleteAll(Integer.parseInt(userId));
+        return "redirect:/user/cabinet/"+String.valueOf(userId);
+    }
 }
+
+

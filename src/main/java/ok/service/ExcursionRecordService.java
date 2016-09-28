@@ -14,4 +14,6 @@ public interface ExcursionRecordService {
     List<ExcursionRecord> findAll();
     void addOrEdit(int excursionId, String userId, String excursionDay, String excursionStart);
     List<ExcursionRecord> findByUser(int id);
+    void deleteAll(int id);
+
 }

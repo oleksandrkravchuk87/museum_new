@@ -7,9 +7,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <form:form action="/loginprocessing" method="post">
+
     <input name="username" type="text" placeholder="Login">
     <input name="password" type="password" placeholder="Password">
     <input type="submit" value="Sing in!">

@@ -3,10 +3,12 @@ package ok.controllers;
 
 import ok.entity.User;
 import ok.service.ExcursionRecordService;
+import ok.validations.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +26,8 @@ public class UserController {
     @Autowired
     private UserService userService;
     @Autowired
+    private UserValidator userValidator;
+    @Autowired
     private ExcursionRecordService excursionRecordService;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
@@ -33,23 +37,31 @@ public class UserController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registration(@ModelAttribute User user) {
+    public String registration(@ModelAttribute User user, BindingResult bindingResult) {
+        userValidator.validate(user, bindingResult);
+        if(bindingResult.hasErrors()){
+            return "views-user-registration";
+        }else{
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userService.addOrEdit(user);
+    }
         return "redirect:/";
     }
-
-
 
     @RequestMapping(value = "/loginpage", method = RequestMethod.GET)
     public String login() {
         return "views-user-login";
     }
 
+
+
     @RequestMapping(value = "/cabinet", method = RequestMethod.GET)
     public String cabinet(Principal principal, Model model) {
-        model.addAttribute("user", userService.findOne(Integer.parseInt(principal.getName())));
+       User user = userService.findOne(Integer.parseInt(principal.getName()));
+        model.addAttribute("user", user);
+        model.addAttribute("records", excursionRecordService.findByUser(user.getId()));
+
         return "views-user-cabinet";
     }
     @RequestMapping(value = "/user/all", method = RequestMethod.GET)
@@ -77,6 +89,9 @@ public class UserController {
         model.addAttribute("records", excursionRecordService.findByUser(Integer.parseInt(id)));
         return "views-user-cabinet";
     }
+
+
+
     @RequestMapping(value = "/user/edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable String id, Model model) {
         model.addAttribute("user", userService.findOne(Integer.parseInt(id)));
